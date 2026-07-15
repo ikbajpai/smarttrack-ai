@@ -1,41 +1,112 @@
-# Python
+# ─────────────────────────────────────────────────────────────────────────────
+# SmartTrack AI — .gitignore
+# Python 3.10 · Ultralytics YOLO · OpenCV · Streamlit · macOS · VS Code
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+# ── Python bytecode & packaging ───────────────────────────────────────────────
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
 *.egg-info/
+*.egg
 dist/
 build/
 .eggs/
+pip-wheel-metadata/
+MANIFEST
+
+
+# ── Virtual environments ──────────────────────────────────────────────────────
 .env
+.env.*
+!.env.example
 .venv/
 venv/
 env/
 
-# Models & weights
-models/
 
-# Data
-data/sample_videos/
+# ── Testing & coverage ────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
 
-# Outputs
-outputs/videos/
-outputs/screenshots/
-outputs/intrusion_logs/
 
-# Logs
-logs/
+# ── Type checking & linting caches ───────────────────────────────────────────
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
 
-# IDE
+
+# ── Model weight files (large binaries — download separately) ─────────────────
+# models/.gitkeep is preserved; only binary weight files are excluded.
+*.pt
+*.pth
+*.onnx
+*.engine
+*.trt
+*.weights
+
+
+# ── Video files (large binaries — generate or download locally) ───────────────
+# Excludes binary video files project-wide.
+# Source files (generate_test_videos.py) and docs (SOURCES.md) are unaffected.
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+
+# ── Runtime outputs ───────────────────────────────────────────────────────────
+# Ignore generated content but preserve .gitkeep to track the folder structure.
+outputs/videos/*
+!outputs/videos/.gitkeep
+
+outputs/screenshots/*
+!outputs/screenshots/.gitkeep
+
+outputs/intrusion_logs/*
+!outputs/intrusion_logs/.gitkeep
+
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+logs/*
+!logs/.gitkeep
+
+
+# ── Zone configs (user-defined at runtime, not source) ───────────────────────
+data/zone_configs/*
+!data/zone_configs/.gitkeep
+
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# OS
+
+# ── Claude Code ──────────────────────────────────────────────────────────────
+.claude/
+
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
 .DS_Store
+.AppleDouble
+.LSOverride
 Thumbs.db
 
-# Jupyter
+
+# ── Temporary files ───────────────────────────────────────────────────────────
+*.tmp
+*.temp
+*.bak
+
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
 .ipynb_checkpoints/
 *.ipynb
