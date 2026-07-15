@@ -63,7 +63,7 @@ smarttrack-ai/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/smarttrack-ai.git
+git clone https://github.com/ikbajpai/smarttrack-ai.git
 cd smarttrack-ai
 ```
 
