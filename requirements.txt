@@ -1,0 +1,22 @@
+# Core CV & AI
+ultralytics>=8.2.0
+opencv-python>=4.9.0
+numpy>=1.26.0
+
+# Tracking
+# ByteTrack is integrated via ultralytics; no separate install needed
+
+# App
+streamlit>=1.35.0
+
+# Utilities
+PyYAML>=6.0.1
+Pillow>=10.3.0
+pandas>=2.2.0
+
+# Logging
+loguru>=0.7.2
+
+# Dev / Testing
+pytest>=8.2.0
+pytest-cov>=5.0.0

@@ -1,0 +1,42 @@
+# ─────────────────────────────────────────────
+# SmartTrack AI — Central Configuration
+# ─────────────────────────────────────────────
+
+model:
+  weights: models/yolov8n.pt       # Path to YOLO weights
+  confidence_threshold: 0.4
+  iou_threshold: 0.45
+  device: cpu                       # "cpu" | "cuda" | "mps"
+  classes:
+    - person                        # Target classes to detect
+
+tracker:
+  type: bytetrack                   # Tracker algorithm
+  track_high_thresh: 0.5
+  track_low_thresh: 0.1
+  new_track_thresh: 0.6
+  track_buffer: 30
+  match_thresh: 0.8
+
+zones:
+  - id: zone_1
+    name: "Restricted Area A"
+    polygon: []                     # List of [x, y] points — filled via UI or zone_configs/
+    color: [0, 0, 255]              # BGR
+    alert_cooldown_seconds: 5
+
+video:
+  source: 0                         # 0 = webcam | path to video file
+  width: 1280
+  height: 720
+  fps: 30
+
+alerts:
+  enable_console: true
+  enable_log_file: true
+  log_path: outputs/intrusion_logs/intrusion_log.csv
+
+app:
+  title: "SmartTrack AI"
+  page_icon: "🎯"
+  layout: wide
