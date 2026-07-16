@@ -17,6 +17,11 @@ tracker:
   new_track_thresh: 0.6
   track_buffer: 30
   match_thresh: 0.8
+  fuse_score: false                 # Fuse detection score into IoU distance matrix
+  frame_rate: 30                    # Must match video.fps for correct buffer sizing
+  trail_max_length: 30              # Centroid history depth per track (frames)
+  trail_thickness: 2                # Pixels
+  trail_colour: [0, 255, 255]       # BGR — cyan
 
 zones:
   - id: zone_1
