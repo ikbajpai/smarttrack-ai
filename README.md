@@ -23,9 +23,9 @@ SmartTrack AI is a production-grade computer vision system that detects and trac
 
 | Day | Focus | Status |
 |-----|-------|--------|
-| Day 1 | Project initialization & architecture | ✅ Complete |
-| Day 2 | Detection + Tracking pipeline | 🔜 Pending |
-| Day 3 | Zone definition & intrusion logic | 🔜 Pending |
+| Day 1 | Project architecture, YOLO detector, standalone test script | ✅ Complete |
+| Day 2 | ByteTrack integration, stable track IDs, motion trails | ✅ Complete |
+| Day 3 | Zone polygon drawing & intrusion engine | 🔜 Pending |
 | Day 4 | Alert system & pipeline integration | 🔜 Pending |
 | Day 5 | Streamlit UI & end-to-end testing | 🔜 Pending |
 
@@ -86,15 +86,39 @@ streamlit run app/streamlit_app.py
 
 ---
 
+## Testing Modules
+
+Standalone scripts let you verify each module independently against real video:
+
+```bash
+# Test detector only
+python test_detector.py --source data/sample_videos/real/pexels_corridor.mp4
+
+# Test detector + tracker (with motion trails)
+python test_tracker.py --source data/sample_videos/real/pexels_shopping_mall.mp4
+
+# Headless / CI mode
+python test_tracker.py --source data/sample_videos/real/pexels_corridor.mp4 --no-display --log-level INFO
+```
+
+Run the full unit test suite:
+
+```bash
+pytest tests/
+pytest tests/ --cov=src --cov-report=html
+```
+
+---
+
 ## Configuration
 
 All runtime parameters are controlled via `config/config.yaml`:
 
-- **model** — YOLO weights path, confidence/IoU thresholds, target device
-- **tracker** — ByteTrack hyperparameters
-- **zones** — Restricted zone polygon definitions
-- **video** — Input source and resolution
-- **alerts** — Console/file alert settings
+- **model** — YOLO weights path, confidence/IoU thresholds, target device (`cpu` / `cuda` / `mps`)
+- **tracker** — ByteTrack hyperparameters (`track_high_thresh`, `match_thresh`, `fuse_score`, trail length/colour, etc.)
+- **zones** — Restricted zone polygon definitions with per-zone alert cooldown
+- **video** — Input source (`0` = webcam or file path) and resolution
+- **alerts** — Console/file alert settings and CSV output path
 
 ---
 
