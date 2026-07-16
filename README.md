@@ -28,7 +28,22 @@ SmartTrack AI is a production-grade computer vision system that detects and trac
 | Day 2 | ByteTrack integration, stable track IDs, motion trails | ✅ Complete |
 | Day 3 | Zone polygon management, intrusion detection, 53 zone tests | ✅ Complete |
 | Day 4 | Alert system, inference pipeline, 81 new tests (168 total) | ✅ Complete |
-| Day 5 | Streamlit UI & end-to-end testing | 🔜 Pending |
+| Day 5 | Streamlit UI — live feed, metrics, alert table, source switching | ✅ Complete |
+
+---
+
+## UI Features
+
+The Streamlit dashboard (`app/streamlit_app.py`) provides:
+
+| Panel | Details |
+|---|---|
+| **Sidebar — Source** | Upload MP4/AVI/MOV/MKV or select a webcam index |
+| **Sidebar — Detection** | Live confidence threshold slider (updates mid-stream) |
+| **Sidebar — Controls** | Start, Stop, and Reset pipeline buttons |
+| **Video feed** | Annotated frames with bounding boxes, motion trails, and zone overlays |
+| **Metrics** | FPS · People detected · Active tracks · Total intrusions |
+| **Alert table** | Recent ENTER/EXIT events with timestamp, track ID, and zone name |
 
 ---
 
@@ -41,7 +56,7 @@ smarttrack-ai/
 │   ├── detection/           # YOLO detector wrapper
 │   ├── tracking/            # ByteTrack tracker wrapper
 │   ├── zones/               # Zone polygon management & intrusion check
-│   ├── alerts/              # Alert dispatch & CSV logging
+│   ├── alerts/              # Alert dispatch with pluggable handler backends
 │   ├── pipeline/            # Inference orchestration
 │   └── utils/               # Video helpers & logger
 ├── app/                     # Streamlit application
