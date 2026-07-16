@@ -76,6 +76,10 @@ class TrackedObject:
         class_name: Always ``"person"`` for this pipeline.
         centroid: Pixel coordinates of the box centre ``(cx, cy)``.  Used by
             ZoneManager for point-in-polygon intrusion tests.
+        foot_point: Bottom-centre of the bounding box ``(cx, y2)``.  Preferred
+            contact point for floor-plane intrusion tests in ZoneManager because
+            it approximates where the person stands.  ``None`` only when created
+            without a valid bbox (e.g., in legacy unit-test fixtures).
     """
 
     track_id: int
@@ -83,6 +87,7 @@ class TrackedObject:
     confidence: float
     class_name: str
     centroid: tuple[int, int]
+    foot_point: tuple[int, int] | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -265,6 +270,7 @@ class Tracker:
                     confidence=score,
                     class_name="person",
                     centroid=(cx, cy),
+                    foot_point=(cx, y2),
                 )
             )
 
