@@ -12,6 +12,7 @@ SmartTrack AI is a production-grade computer vision system that detects and trac
 |---|---|
 | Object Detection | Ultralytics YOLOv8 |
 | Multi-Object Tracking | ByteTrack (via Ultralytics) |
+| Zone Geometry | Shapely |
 | Video Processing | OpenCV |
 | Web Interface | Streamlit |
 | Configuration | YAML |
@@ -25,7 +26,7 @@ SmartTrack AI is a production-grade computer vision system that detects and trac
 |-----|-------|--------|
 | Day 1 | Project architecture, YOLO detector, standalone test script | ✅ Complete |
 | Day 2 | ByteTrack integration, stable track IDs, motion trails | ✅ Complete |
-| Day 3 | Zone polygon drawing & intrusion engine | 🔜 Pending |
+| Day 3 | Zone polygon management, intrusion detection, 53 zone tests | ✅ Complete |
 | Day 4 | Alert system & pipeline integration | 🔜 Pending |
 | Day 5 | Streamlit UI & end-to-end testing | 🔜 Pending |
 
@@ -101,7 +102,7 @@ python test_tracker.py --source data/sample_videos/real/pexels_shopping_mall.mp4
 python test_tracker.py --source data/sample_videos/real/pexels_corridor.mp4 --no-display --log-level INFO
 ```
 
-Run the full unit test suite:
+Run the full unit test suite (87 tests across detector, tracker, and zone manager):
 
 ```bash
 pytest tests/
@@ -116,7 +117,7 @@ All runtime parameters are controlled via `config/config.yaml`:
 
 - **model** — YOLO weights path, confidence/IoU thresholds, target device (`cpu` / `cuda` / `mps`)
 - **tracker** — ByteTrack hyperparameters (`track_high_thresh`, `match_thresh`, `fuse_score`, trail length/colour, etc.)
-- **zones** — Restricted zone polygon definitions with per-zone alert cooldown
+- **zones** — Restricted zone polygon definitions with per-zone alert cooldown (also loadable from `data/zone_configs/*.json`)
 - **video** — Input source (`0` = webcam or file path) and resolution
 - **alerts** — Console/file alert settings and CSV output path
 
